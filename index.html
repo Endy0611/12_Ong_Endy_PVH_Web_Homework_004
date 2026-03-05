@@ -7,6 +7,9 @@
     <title>Document</title>
     <link href="./src/output.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="bg-blue-300">
@@ -37,7 +40,7 @@
             </div>
             <label class="font-bold block mb-2">Task</label>
             <input id="taskInput" type="text" placeholder="Web Homework"
-    class="block w-[85%] border-2 border-blue-400 rounded-full px-5 py-2.5 mb-5 outline-none focus:border-blue-600">
+                class="block w-[85%] border-2 border-blue-400 rounded-full px-5 py-2.5 mb-5 outline-none focus:border-blue-600">
             <label class="font-bold block mb-2">Priority</label>
             <div class="flex gap-2.5 mb-5">
                 <button
@@ -50,20 +53,19 @@
                     onclick="selectPriorityXStatus(this,'priority')">Medium</button>
                 <button
                     class="priority-btn px-5 py-2 rounded-full border-2 border-green-600 text-green-600 bg-white font-semibold cursor-pointer hover:bg-green-600 hover:text-white transition-colors"
-                    data-value="low" data-color="#16a34a"
-                    onclick="selectPriorityXStatus(this,'priority')">Low</button>
+                    data-value="low" data-color="#16a34a" onclick="selectPriorityXStatus(this,'priority')">Low</button>
             </div>
             <label class="font-bold block mb-2">Status</label>
             <div class="flex gap-2.5 mb-6">
                 <button
-                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer hover:bg-cyan-400 hover:text-white transition-colors"
+                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer transition-colors"
                     data-value="todo" data-color="#22d3ee" onclick="selectPriorityXStatus(this,'status')">To Do</button>
                 <button
-                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer hover:bg-cyan-400 hover:text-white transition-colors"
+                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer transition-colors"
                     data-value="progress" data-color="#22d3ee"
                     onclick="selectPriorityXStatus(this,'status')">Progress</button>
                 <button
-                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer hover:bg-cyan-400 hover:text-white transition-colors"
+                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer transition-colors"
                     data-value="done" data-color="#22d3ee" onclick="selectPriorityXStatus(this,'status')">Done</button>
             </div>
             <div class="flex justify-end">
@@ -78,12 +80,10 @@
         class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 m-0 rounded-2xl w-full max-w-sm p-0 backdrop:bg-black/40">
         <div class="bg-white rounded-2xl p-10 shadow-xl flex flex-col items-center gap-6">
             <h2 class="text-red-500 text-2xl font-black">Are you sure ?</h2>
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-red-500" viewBox="0 0 24 24"
-                fill="currentColor">
-                <path fill-rule="evenodd"
-                    d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
-                    clip-rule="evenodd" />
-            </svg>
+            <div class="w-16 h-16">
+                <i class="text-red-500 fa-solid fa-triangle-exclamation text-6xl"></i>
+            </div>
+
             <div class="flex gap-4">
                 <button onclick="confirmDelete()"
                     class="bg-red-500 hover:bg-red-600 text-white font-bold px-8 py-2.5 rounded-full cursor-pointer border-none transition-colors">Yes</button>
@@ -122,14 +122,14 @@
             <label class="font-bold block mb-2">Status</label>
             <div class="flex gap-2.5 mb-6">
                 <button
-                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer hover:bg-cyan-400 hover:text-white transition-colors"
+                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer transition-colors"
                     data-value="todo" data-color="#22d3ee" onclick="selectPriorityXStatus(this,'status')">To Do</button>
                 <button
-                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer hover:bg-cyan-400 hover:text-white transition-colors"
+                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer transition-colors"
                     data-value="progress" data-color="#22d3ee"
                     onclick="selectPriorityXStatus(this,'status')">Progress</button>
                 <button
-                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer hover:bg-cyan-400 hover:text-white transition-colors"
+                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer transition-colors"
                     data-value="done" data-color="#22d3ee" onclick="selectPriorityXStatus(this,'status')">Done</button>
             </div>
             <div class="flex justify-end gap-2">

@@ -21,8 +21,8 @@ function selectPriorityXStatus(btn, type) {
   const dialog = btn.closest("dialog");
   dialog.querySelectorAll(`.${type}-btn`).forEach((b) => {
     b.style.background = "";
-    b.style.color = b.dataset.color;
-    b.style.borderColor = b.dataset.color;
+    b.style.color = "";
+    b.style.borderColor = "";
   });
 
   btn.style.background = btn.dataset.color;
@@ -97,8 +97,8 @@ function openUpdateModal(index) {
 
   dialog.querySelectorAll(".priority-btn, .status-btn").forEach((b) => {
     b.style.background = "";
-    b.style.color = b.dataset.color;
-    b.style.borderColor = b.dataset.color;
+    b.style.color = "";
+b.style.borderColor = "";
   });
 
   dialog.querySelectorAll(".priority-btn").forEach((b) => {
