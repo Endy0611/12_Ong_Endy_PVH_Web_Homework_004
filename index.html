@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./src/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="bg-blue-300">
+    <div class="container m-auto p-4">
+        <div class="flex justify-between">
+            <h1 class="text-2xl font-bold">Task List</h1>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4  rounded-lg"
+                onclick="openModal()">Add Task</button>
+        </div>
+        <div class="mt-4 flex justify-around bg-white p-4 rounded-lg shadow-md">
+            <h1 class="text-xl font-bold text-blue-400">Task</h1>
+            <h1 class="text-xl font-bold text-blue-400">Priority</h1>
+            <h1 class="text-xl font-bold text-blue-400">Status</h1>
+            <h1 class="text-xl font-bold text-yellow-400">Actions</h1>
+        </div>
+        <div id="taskList" class="mt-4"></div>
+    </div>
+
+    <!-- add task modalL -->
+    <dialog id="modalOverlay"
+        class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 m-0 rounded-2xl w-full max-w-md p-0 backdrop:bg-black/40">
+        <div class="bg-white p-8 rounded-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-black">Add Task</h2>
+                <button onclick="closeModal()"
+                    class="text-xl cursor-pointer text-gray-400 hover:text-gray-800">✕</button>
+            </div>
+            <label class="font-bold block mb-2">Task</label>
+            <input id="taskInput" type="text" placeholder="Web Homework"
+                class="w-full border-2 border-blue-400 rounded-full px-5 py-2.5 mb-5 outline-none focus:border-blue-600">
+            <label class="font-bold block mb-2">Priority</label>
+            <div class="flex gap-2.5 mb-5">
+                <button
+                    class="priority-btn px-5 py-2 rounded-full border-2 border-red-500 text-red-500 bg-white font-semibold cursor-pointer hover:bg-red-500 hover:text-white transition-colors"
+                    data-value="high" data-color="#ef4444"
+                    onclick="selectPriorityXStatus(this,'priority')">High</button>
+                <button
+                    class="priority-btn px-5 py-2 rounded-full border-2 border-yellow-400 text-yellow-600 bg-white font-semibold cursor-pointer hover:bg-yellow-400 hover:text-white transition-colors"
+                    data-value="medium" data-color="#facc15"
+                    onclick="selectPriorityXStatus(this,'priority')">Medium</button>
+                <button
+                    class="priority-btn px-5 py-2 rounded-full border-2 border-green-600 text-green-600 bg-white font-semibold cursor-pointer hover:bg-green-600 hover:text-white transition-colors"
+                    data-value="low" data-color="#16a34a"
+                    onclick="selectPriorityXStatus(this,'priority')">Low</button>
+            </div>
+            <label class="font-bold block mb-2">Status</label>
+            <div class="flex gap-2.5 mb-6">
+                <button
+                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer hover:bg-cyan-400 hover:text-white transition-colors"
+                    data-value="todo" data-color="#22d3ee" onclick="selectPriorityXStatus(this,'status')">To Do</button>
+                <button
+                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer hover:bg-cyan-400 hover:text-white transition-colors"
+                    data-value="progress" data-color="#22d3ee"
+                    onclick="selectPriorityXStatus(this,'status')">Progress</button>
+                <button
+                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer hover:bg-cyan-400 hover:text-white transition-colors"
+                    data-value="done" data-color="#22d3ee" onclick="selectPriorityXStatus(this,'status')">Done</button>
+            </div>
+            <div class="flex justify-end">
+                <button onclick="addTask()"
+                    class="bg-purple-700 text-white font-bold px-8 py-2.5 rounded-xl cursor-pointer hover:bg-purple-900 transition-colors">Add</button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- delete modal -->
+    <dialog id="confirmModal"
+        class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 m-0 rounded-2xl w-full max-w-sm p-0 backdrop:bg-black/40">
+        <div class="bg-white rounded-2xl p-10 shadow-xl flex flex-col items-center gap-6">
+            <h2 class="text-red-500 text-2xl font-black">Are you sure ?</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-red-500" viewBox="0 0 24 24"
+                fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                    clip-rule="evenodd" />
+            </svg>
+            <div class="flex gap-4">
+                <button onclick="confirmDelete()"
+                    class="bg-red-500 hover:bg-red-600 text-white font-bold px-8 py-2.5 rounded-full cursor-pointer border-none transition-colors">Yes</button>
+                <button onclick="closeConfirmModal()"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-2.5 rounded-full cursor-pointer border-none transition-colors">No</button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- update modal -->
+    <dialog id="updateModal"
+        class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 m-0 rounded-2xl w-full max-w-md p-0 backdrop:bg-black/40">
+        <div class="bg-white p-8 rounded-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-black">Update Task</h2>
+                <button onclick="closeUpdateModal()"
+                    class="text-xl cursor-pointer text-gray-400 hover:text-gray-800">✕</button>
+            </div>
+            <label class="font-bold block mb-2">Task</label>
+            <input id="updateTaskInput" type="text" placeholder="Web Homework"
+                class="w-full border-2 border-blue-400 rounded-full px-5 py-2.5 mb-5 outline-none focus:border-blue-600">
+            <label class="font-bold block mb-2">Priority</label>
+            <div class="flex gap-2.5 mb-5">
+                <button
+                    class="priority-btn px-5 py-2 rounded-full border-2 border-red-500 text-red-500 bg-white font-semibold cursor-pointer hover:bg-red-500 hover:text-white transition-colors"
+                    data-value="high" data-color="#e74c3c"
+                    onclick="selectPriorityXStatus(this,'priority')">High</button>
+                <button
+                    class="priority-btn px-5 py-2 rounded-full border-2 border-yellow-400 text-yellow-600 bg-white font-semibold cursor-pointer hover:bg-yellow-400 hover:text-white transition-colors"
+                    data-value="medium" data-color="#f0c040"
+                    onclick="selectPriorityXStatus(this,'priority')">Medium</button>
+                <button
+                    class="priority-btn px-5 py-2 rounded-full border-2 border-green-600 text-green-600 bg-white font-semibold cursor-pointer hover:bg-green-600 hover:text-white transition-colors"
+                    data-value="low" data-color="#27ae60" onclick="selectPriorityXStatus(this,'priority')">Low</button>
+            </div>
+            <label class="font-bold block mb-2">Status</label>
+            <div class="flex gap-2.5 mb-6">
+                <button
+                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer hover:bg-cyan-400 hover:text-white transition-colors"
+                    data-value="todo" data-color="#22d3ee" onclick="selectPriorityXStatus(this,'status')">To Do</button>
+                <button
+                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer hover:bg-cyan-400 hover:text-white transition-colors"
+                    data-value="progress" data-color="#22d3ee"
+                    onclick="selectPriorityXStatus(this,'status')">Progress</button>
+                <button
+                    class="status-btn px-5 py-2 rounded-full border-2 border-cyan-400 text-cyan-400 bg-white font-semibold cursor-pointer hover:bg-cyan-400 hover:text-white transition-colors"
+                    data-value="done" data-color="#22d3ee" onclick="selectPriorityXStatus(this,'status')">Done</button>
+            </div>
+            <div class="flex justify-end gap-2">
+                <button onclick="closeUpdateModal()"
+                    class="bg-red-500 text-white font-bold px-8 py-2.5 rounded-xl cursor-pointer hover:bg-red-600 transition-colors">Cancel</button>
+                <button onclick="confirmUpdate()"
+                    class="bg-purple-700 text-white font-bold px-8 py-2.5 rounded-xl cursor-pointer hover:bg-purple-900 transition-colors">Update</button>
+            </div>
+        </div>
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
