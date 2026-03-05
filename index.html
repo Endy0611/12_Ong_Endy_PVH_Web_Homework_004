@@ -22,6 +22,7 @@
             <h1 class="text-xl font-bold text-blue-400">Status</h1>
             <h1 class="text-xl font-bold text-yellow-400">Actions</h1>
         </div>
+        <!-- for show task list -->
         <div id="taskList" class="mt-4"></div>
     </div>
 
@@ -36,7 +37,7 @@
             </div>
             <label class="font-bold block mb-2">Task</label>
             <input id="taskInput" type="text" placeholder="Web Homework"
-                class="w-full border-2 border-blue-400 rounded-full px-5 py-2.5 mb-5 outline-none focus:border-blue-600">
+    class="block w-[85%] border-2 border-blue-400 rounded-full px-5 py-2.5 mb-5 outline-none focus:border-blue-600">
             <label class="font-bold block mb-2">Priority</label>
             <div class="flex gap-2.5 mb-5">
                 <button
@@ -103,20 +104,20 @@
             </div>
             <label class="font-bold block mb-2">Task</label>
             <input id="updateTaskInput" type="text" placeholder="Web Homework"
-                class="w-full border-2 border-blue-400 rounded-full px-5 py-2.5 mb-5 outline-none focus:border-blue-600">
+                class="block w-[85%] border-2 border-blue-400 rounded-full px-5 py-2.5 mb-5 outline-none focus:border-blue-600">
             <label class="font-bold block mb-2">Priority</label>
             <div class="flex gap-2.5 mb-5">
                 <button
                     class="priority-btn px-5 py-2 rounded-full border-2 border-red-500 text-red-500 bg-white font-semibold cursor-pointer hover:bg-red-500 hover:text-white transition-colors"
-                    data-value="high" data-color="#e74c3c"
+                    data-value="high" data-color="#ef4444"
                     onclick="selectPriorityXStatus(this,'priority')">High</button>
                 <button
                     class="priority-btn px-5 py-2 rounded-full border-2 border-yellow-400 text-yellow-600 bg-white font-semibold cursor-pointer hover:bg-yellow-400 hover:text-white transition-colors"
-                    data-value="medium" data-color="#f0c040"
+                    data-value="medium" data-color="#facc15"
                     onclick="selectPriorityXStatus(this,'priority')">Medium</button>
                 <button
                     class="priority-btn px-5 py-2 rounded-full border-2 border-green-600 text-green-600 bg-white font-semibold cursor-pointer hover:bg-green-600 hover:text-white transition-colors"
-                    data-value="low" data-color="#27ae60" onclick="selectPriorityXStatus(this,'priority')">Low</button>
+                    data-value="low" data-color="#16a34a" onclick="selectPriorityXStatus(this,'priority')">Low</button>
             </div>
             <label class="font-bold block mb-2">Status</label>
             <div class="flex gap-2.5 mb-6">
